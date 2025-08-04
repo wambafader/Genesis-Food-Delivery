@@ -1,0 +1,1516 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesis Food Delivery | Order Delicious Meals Online</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #e63946;
+      --primary-dark: #c1121f;
+      --secondary: #f8f8f8;
+      --dark: #1d3557;
+      --light: #ffffff;
+      --accent: #a8dadc;
+      --text: #333333;
+      --gray: #f0f0f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background: var(--secondary);
+      color: var(--text);
+    }
+
+    /* Header & Navigation */
+    header {
+      background: var(--light);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--dark);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--primary);
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+
+    .order-btn {
+      padding: 0.6rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .order-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--dark);
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('https://genesisrestaurant.com.ng/wp-content/uploads/2022/06/G21-7.jpg') no-repeat center center/cover;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5%;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .search-bar {
+      display: flex;
+      max-width: 600px;
+      margin-top: 2rem;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 1rem;
+      border: none;
+      border-radius: 30px 0 0 30px;
+      font-size: 1rem;
+    }
+
+    .search-bar button {
+      padding: 0 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 5rem 5%;
+      background: var(--light);
+    }
+
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--secondary);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    /* Menu Section */
+    .menu-section {
+      padding: 5rem 5%;
+      background: var(--secondary);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .tab-btn {
+      padding: 0.6rem 1.5rem;
+      background: var(--light);
+      border: none;
+      border-radius: 30px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .menu-item {
+      background: var(--light);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .menu-img {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .menu-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .menu-item:hover .menu-img img {
+      transform: scale(1.1);
+    }
+
+    .menu-content {
+      padding: 1.5rem;
+    }
+
+    .menu-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .menu-content p {
+      color: #666;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price span {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .add-to-cart {
+      background: var(--primary);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background: var(--primary-dark);
+      transform: rotate(90deg);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--primary);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      padding: 5rem 5%;
+      background: var(--light);
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 1.5rem;
+    }
+
+    .step-card h3 {
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 5rem 5%;
+      background: var(--secondary);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonial {
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .testimonial-content {
+      margin-bottom: 1.5rem;
+      color: #555;
+      font-style: italic;
+      position: relative;
+    }
+
+    .testimonial-content::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--primary);
+      opacity: 0.2;
+      position: absolute;
+      top: -20px;
+      left: -10px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .author-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .author-info p {
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+
+    .rating {
+      color: #ffc107;
+      margin-bottom: 0.5rem;
+    }
+
+    /* App Download */
+    .app-download {
+      padding: 5rem 5%;
+      background: var(--light);
+      text-align: center;
+    }
+
+    .app-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .app-btn {
+      display: flex;
+      align-items: center;
+      background: var(--dark);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .app-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .app-btn i {
+      font-size: 1.8rem;
+      margin-right: 0.8rem;
+    }
+
+    .app-btn-text {
+      text-align: left;
+    }
+
+    .app-btn-text span {
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .app-btn-text strong {
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 5% 2rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-col h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .footer-col p {
+      margin-bottom: 1rem;
+      color: #bbb;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #bbb;
+    }
+
+    /* Cart Sidebar */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100vh;
+      background: var(--light);
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      z-index: 2000;
+      transition: right 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .cart-sidebar.active {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-header h3 {
+      font-size: 1.3rem;
+      color: var(--dark);
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .cart-items {
+      padding: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-right: 1rem;
+    }
+
+    .cart-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-details h4 {
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+    }
+
+    .quantity-btn {
+      width: 25px;
+      height: 25px;
+      background: var(--gray);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .quantity {
+      margin: 0 0.5rem;
+    }
+
+    .remove-item {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .remove-item:hover {
+      color: var(--primary);
+    }
+
+    .cart-total {
+      padding: 1.5rem;
+      border-top: 1px solid #eee;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .total-row:last-child {
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-top: 1px solid #eee;
+      padding-top: 1rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .checkout-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1500;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        background: var(--light);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .cart-sidebar {
+        width: 350px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 70vh;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .search-bar {
+        flex-direction: column;
+      }
+      
+      .search-bar input {
+        border-radius: 30px;
+        margin-bottom: 1rem;
+      }
+      
+      .search-bar button {
+        border-radius: 30px;
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .cart-sidebar {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">Genesis<span>Delivery</span></a>
+      
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="cart-btn" id="cart-btn">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </button>
+        <button class="order-btn">Order Now</button>
+        <button class="menu-toggle" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Delicious Food Delivered To Your Doorstep</h1>
+      <p>Order from your favorite restaurants with just a few taps and enjoy fresh, hot meals in no time.</p>
+      
+      <div class="search-bar">
+        <input type="text" placeholder="What are you craving today?">
+        <button><i class="fas fa-search"></i> Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="features-container">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3>Fast Delivery</h3>
+        <p>Get your food delivered in under 30 minutes or it's free</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-utensils"></i>
+        </div>
+        <h3>Fresh Food</h3>
+        <p>Only the freshest ingredients from trusted suppliers</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-percent"></i>
+        </div>
+        <h3>Great Discounts</h3>
+        <p>Enjoy exclusive discounts and loyalty rewards</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-headset"></i>
+        </div>
+        <h3>24/7 Support</h3>
+        <p>Our customer service team is always ready to help</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu-section" id="menu">
+    <div class="section-title">
+      <h2>Our Popular Dishes</h2>
+      <p>Discover our delicious selection of meals prepared with love and the finest ingredients</p>
+    </div>
+    
+    <div class="menu-tabs">
+      <button class="tab-btn active" data-category="all">All</button>
+      <button class="tab-btn" data-category="nigerian">Nigerian</button>
+      <button class="tab-btn" data-category="continental">Continental</button>
+      <button class="tab-btn" data-category="desserts">Desserts</button>
+      <button class="tab-btn" data-category="drinks">Drinks</button>
+    </div>
+    
+    <div class="menu-grid">
+      <!-- Menu Item 1 -->
+      <div class="menu-item" data-category="nigerian">
+        <div class="popular-badge">Popular</div>
+        <div class="menu-img">
+          <img src="https://genesisrestaurant.com.ng/wp-content/uploads/2022/06/G21-7.jpg" alt="Fried Rice & Chicken">
+        </div>
+        <div class="menu-content">
+          <h3>Fried Rice & Chicken</h3>
+          <p>Fragrant jollof rice with succulent grilled chicken and vegetables</p>
+          <div class="price">
+            <span>₦5,500</span>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Menu Item 2 -->
+      <div class="menu-item" data-category="nigerian">
+        <div class="menu-img">
+          <img src="https://genesisrestaurant.com.ng/wp-content/uploads/2022/06/Grilled-fish.jpg" alt="Grilled Fish">
+        </div>
+        <div class="menu-content">
+          <h3>Grilled Fish</h3>
+          <p>Fresh tilapia grilled to perfection with our special spice blend</p>
+          <div class="price">
+            <span>₦6,800</span>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Menu Item 3 -->
+      <div class="menu-item" data-category="continental">
+        <div class="popular-badge">Popular</div>
+        <div class="menu-img">
+          <img src="https://genesisrestaurant.com.ng/wp-content/uploads/2022/06/spaghetti.jpg" alt="Spaghetti Bolognese">
+        </div>
+        <div class="menu-content">
+          <h3>Spaghetti Bolognese</h3>
+          <p>Classic Italian pasta with rich meat sauce and parmesan</p>
+          <div class="price">
+            <span>₦4,500</span>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Menu Item 4 -->
+      <div class="menu-item" data-category="nigerian">
+        <div class="menu-img">
+          <img src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Pepper Soup">
+        </div>
+        <div class="menu-content">
+          <h3>Nigerian Pepper Soup</h3>
+          <p>Spicy broth with goat meat, traditional herbs and spices</p>
+          <div class="price">
+            <span>₦3,200</span>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Menu Item 5 -->
+      <div class="menu-item" data-category="desserts">
+        <div class="menu-img">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Chocolate Cake">
+        </div>
+        <div class="menu-content">
+          <h3>Chocolate Delight</h3>
+          <p>Rich chocolate cake with vanilla ice cream and berry compote</p>
+          <div class="price">
+            <span>₦3,500</span>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Menu Item 6 -->
+      <div class="menu-item" data-category="drinks">
+        <div class="popular-badge">Popular</div>
+        <div class="menu-img">
+          <img src="https://images.unsplash.com/photo-1551023408-9ea0ce5f1c04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Signature Cocktail">
+        </div>
+        <div class="menu-content">
+          <h3>Genesis Signature</h3>
+          <p>Our special cocktail blend with tropical fruits and premium spirits</p>
+          <div class="price">
+            <span>₦4,200</span>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Menu Item 7 -->
+      <div class="menu-item" data-category="nigerian">
+        <div class="menu-img">
+          <img src="https://images.unsplash.com/photo-1621996659490-6dd6b3a1f931?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Pounded Yam">
+        </div>
+        <div class="menu-content">
+          <h3>Pounded Yam & Egusi</h3>
+          <p>Traditional Nigerian dish with smooth pounded yam and egusi soup</p>
+          <div class="price">
+            <span>₦5,000</span>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Menu Item 8 -->
+      <div class="menu-item" data-category="continental">
+        <div class="menu-img">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="Burger">
+        </div>
+        <div class="menu-content">
+          <h3>Premium Burger</h3>
+          <p>Juicy beef patty with cheese, lettuce, tomato and special sauce</p>
+          <div class="price">
+            <span>₦4,800</span>
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-title">
+      <h2>How It Works</h2>
+      <p>Getting your favorite food delivered has never been easier</p>
+    </div>
+    
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Choose Your Meal</h3>
+        <p>Browse our extensive menu and select your favorite dishes</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Place Your Order</h3>
+        <p>Add items to your cart and proceed to checkout</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Track Delivery</h3>
+        <p>Follow your order in real-time as we prepare and deliver it</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3>Enjoy Your Meal</h3>
+        <p>Sit back, relax and enjoy delicious food at your doorstep</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-title">
+      <h2>What Our Customers Say</h2>
+      <p>Don't just take our word for it - hear from our satisfied customers</p>
+    </div>
+    
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="testimonial-content">
+          <p>"The food arrived hot and fresh, just like dining in the restaurant but without leaving my home. The delivery was super fast too!"</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-img">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Amina Yusuf">
+          </div>
+          <div class="author-info">
+            <h4>Amina Yusuf</h4>
+            <p>Victoria Island</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="testimonial-content">
+          <p>"I order from Genesis at least twice a week. Their jollof rice is the best in Lagos, and their delivery never disappoints."</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-img">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Emeka Okonkwo">
+          </div>
+          <div class="author-info">
+            <h4>Emeka Okonkwo</h4>
+            <p>Lekki</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="testimonial-content">
+          <p>"The app makes ordering so easy, and the food always arrives exactly when they say it will. Highly recommended!"</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-img">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Chioma Adeleke">
+          </div>
+          <div class="author-info">
+            <h4>Chioma Adeleke</h4>
+            <p>Ikoyi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Download -->
+  <section class="app-download">
+    <div class="section-title">
+      <h2>Download Our App</h2>
+      <p>Get exclusive app-only deals and track your orders on the go</p>
+    </div>
+    
+    <div class="app-buttons">
+      <a href="#" class="app-btn">
+        <i class="fab fa-apple"></i>
+        <div class="app-btn-text">
+          <span>Download on the</span>
+          <strong>App Store</strong>
+        </div>
+      </a>
+      
+      <a href="#" class="app-btn">
+        <i class="fab fa-google-play"></i>
+        <div class="app-btn-text">
+          <span>Get it on</span>
+          <strong>Google Play</strong>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Genesis Delivery</h3>
+        <p>Delicious food delivered fast to your doorstep. Order from the best restaurants in town with just a few taps.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Opening Hours</h3>
+        <p>Monday - Friday: 9am - 11pm</p>
+        <p>Saturday - Sunday: 10am - 12am</p>
+        <p>Delivery available 24/7</p>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Genesis Avenue, Lagos</p>
+        <p><i class="fas fa-phone"></i> +234 800 000 0000</p>
+        <p><i class="fas fa-envelope"></i> delivery@genesis.com.ng</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Genesis Food Delivery. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Order (3)</h3>
+      <button class="close-cart" id="close-cart">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="cart-items">
+      <!-- Cart Item 1 -->
+      <div class="cart-item">
+        <div class="cart-item-img">
+          <img src="https://genesisrestaurant.com.ng/wp-content/uploads/2022/06/G21-7.jpg" alt="Fried Rice & Chicken">
+        </div>
+        <div class="cart-item-details">
+          <h4>Fried Rice & Chicken</h4>
+          <div class="cart-item-price">₦5,500</div>
+          <div class="cart-item-controls">
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">1</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+            <button class="remove-item">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cart Item 2 -->
+      <div class="cart-item">
+        <div class="cart-item-img">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Chocolate Cake">
+        </div>
+        <div class="cart-item-details">
+          <h4>Chocolate Delight</h4>
+          <div class="cart-item-price">₦3,500</div>
+          <div class="cart-item-controls">
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">2</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+            <button class="remove-item">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cart-total">
+      <div class="total-row">
+        <span>Subtotal</span>
+        <span>₦12,500</span>
+      </div>
+      <div class="total-row">
+        <span>Delivery Fee</span>
+        <span>₦1,000</span>
+      </div>
+      <div class="total-row">
+        <span>Total</span>
+        <span>₦13,500</span>
+      </div>
+      
+      <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.innerHTML = navLinks.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Cart Toggle
+    const cartBtn = document.getElementById('cart-btn');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const closeCart = document.getElementById('close-cart');
+    const overlay = document.getElementById('overlay');
+    
+    cartBtn.addEventListener('click', () => {
+      cartSidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    closeCart.addEventListener('click', () => {
+      cartSidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    overlay.addEventListener('click', () => {
+      cartSidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Menu Tab Filtering
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const menuItems = document.querySelectorAll('.menu-item');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        const category = btn.dataset.category;
+        
+        // Filter menu items
+        menuItems.forEach(item => {
+          if (category === 'all' || item.dataset.category === category) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Add to Cart Functionality
+    const addToCartBtns = document.querySelectorAll('.add-to-cart');
+    const cartCount = document.querySelector('.cart-count');
+    
+    addToCartBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update cart count
+        let count = parseInt(cartCount.textContent);
+        cartCount.textContent = count + 1;
+        
+        // Animation
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fas fa-plus"></i>';
+        }, 1000);
+      });
+    });
+    
+    // Quantity Controls
+    const plusBtns = document.querySelectorAll('.quantity-btn.plus');
+    const minusBtns = document.querySelectorAll('.quantity-btn.minus');
+    const removeBtns = document.querySelectorAll('.remove-item');
+    
+    plusBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const quantityElement = btn.parentElement.querySelector('.quantity');
+        let quantity = parseInt(quantityElement.textContent);
+        quantityElement.textContent = quantity + 1;
+        updateCartTotal();
+      });
+    });
+    
+    minusBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const quantityElement = btn.parentElement.querySelector('.quantity');
+        let quantity = parseInt(quantityElement.textContent);
+        if (quantity > 1) {
+          quantityElement.textContent = quantity - 1;
+          updateCartTotal();
+        }
+      });
+    });
+    
+    removeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cartItem = btn.closest('.cart-item');
+        cartItem.remove();
+        updateCartTotal();
+      });
+    });
+    
+    // Update Cart Total
+    function updateCartTotal() {
+      const cartItems = document.querySelectorAll('.cart-item');
+      let subtotal = 0;
+      
+      cartItems.forEach(item => {
+        const priceText = item.querySelector('.cart-item-price').textContent;
+        const price = parseInt(priceText.replace(/\D/g, ''));
+        const quantity = parseInt(item.querySelector('.quantity').textContent);
+        subtotal += price * quantity;
+      });
+      
+      const deliveryFee = 1000;
+      const total = subtotal + deliveryFee;
+      
+      document.querySelectorAll('.total-row span')[0].textContent = `₦${subtotal.toLocaleString()}`;
+      document.querySelectorAll('.total-row span')[2].textContent = `₦${total.toLocaleString()}`;
+      
+      // Update cart count in header
+      let totalItems = 0;
+      cartItems.forEach(item => {
+        totalItems += parseInt(item.querySelector('.quantity').textContent);
+      });
+      cartCount.textContent = totalItems;
+    }
+    
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('header');
+      if (window.scrollY > 50) {
+        navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+      } else {
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+      }
+    });
+  </script>
+</body>
+</html>
